@@ -1003,7 +1003,11 @@ subroutine final_diagnostics
 ! Evaluate rotational transform and straight field line coordinate transformation
 if( Ltransform ) then
 
-  FATAL(xspech, Lsvdiota.ne.1, Lsvdiota needs to be one for s.f.l transformation)
+  if( Lsvdiota.ne.1 ) then
+    write(6,'("xspech :      fatal : myid=",i3," ; Lsvdiota.ne.1 ; Lsvdiota needs to be one for s.f.l transformation ;")') myid
+    call MPI_ABORT( MPI_COMM_SPEC, 1, ierr )
+    stop "xspech : Lsvdiota.ne.1 : Lsvdiota needs to be one for s.f.l transformation  ;"
+   endif
 
   do vvol=1,Mvol
     call brcast(vvol)
