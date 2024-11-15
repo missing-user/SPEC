@@ -66,7 +66,7 @@ module constants
   real(wp), parameter :: mu0        =   2.0E-07 * pi2       !< \f$4\pi\cdot10^{-7}\f$
   real(wp), parameter :: goldenmean =   1.618033988749895   !< golden mean = \f$( 1 + \sqrt 5 ) / 2\f$ ;
 
-  real(wp), parameter :: version    =   3.20  !< version of SPEC
+  real(wp), parameter :: version    =   3.23  !< version of SPEC
 
 end module constants
 
@@ -250,6 +250,7 @@ module allglobal
 
   real(wp)                 :: ForceErr !< total force-imbalance
   real(wp)                 :: Energy   !< MHD energy
+  real(wp)                 :: BnsErr   !< (in freeboundary) error in self-consistency of field on plasma boundary (Picard iteration)
 
   real(wp)   , allocatable :: IPDt(:), IPDtDpf(:,:)  !< Toroidal pressure-driven current
 
@@ -988,7 +989,7 @@ subroutine read_inputlists_from_file()
 
    character(len=1000) :: line
 
-   integer              :: mm, nn
+   integer              :: mm, nn, MNMAX
    real(wp),    allocatable :: RZRZ(:,:) ! local array used for reading interface Fourier harmonics from file;
 
    inquire( file=trim(ext)//".sp", exist=Lspexist ) ! check if file exists;
@@ -1107,6 +1108,11 @@ subroutine read_inputlists_from_file()
    instat = 0
 
    num_modes = 0
+
+   MNMAX = MNtor + 1 + MMpol * ( 2 * MNtor + 1 )
+   if(allocated(mmRZRZ)) deallocate(mmRZRZ, nnRZRZ, allRZRZ)
+   allocate(mmRZRZ(1:MNMAX), nnRZRZ(1:MNMAX), allRZRZ(1:4,1:Nvol,1:MNMAX))
+
    if (Linitialize .le. 0) then
 
      ! duplicate of checks required for below code
@@ -1155,9 +1161,6 @@ subroutine read_inputlists_from_file()
 
      ! now allocate arrays and read...
      ! Need to free memory, in case preset() called multiple times via python wrappers
-     if(allocated(mmRZRZ)) deallocate(mmRZRZ, nnRZRZ, allRZRZ)
-     allocate(mmRZRZ(1:num_modes), nnRZRZ(1:num_modes), allRZRZ(1:4,1:Nvol,1:num_modes))
-
      do idx_mode = 1, num_modes
        read(iunit,*,iostat=instat) mmRZRZ(idx_mode), nnRZRZ(idx_mode), allRZRZ(1:4,1:Nvol, idx_mode)
      enddo
@@ -2139,7 +2142,7 @@ subroutine wrtend
   write(iunit,'(" adiabatic   = ",257es23.15)') adiabatic(1:Mvol)
   write(iunit,'(" mu          = ",257es23.15)') mu(1:Mvol)
   write(iunit,'(" Ivolume     = ",257es23.15)') Ivolume(1:Mvol)
-  write(iunit,'(" Isurf       = ",257es23.15)') Isurf(1:Mvol-1)
+  write(iunit,'(" Isurf       = ",257es23.15)') Isurf(1:Mvol-1), 0.0
   write(iunit,'(" Lconstraint = ",i9        )') Lconstraint
   write(iunit,'(" pl          = ",257i23    )') pl(0:Mvol)
   write(iunit,'(" ql          = ",257i23    )') ql(0:Mvol)

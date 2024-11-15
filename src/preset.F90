@@ -2436,7 +2436,7 @@ endif
   else
     Localconstraint = .true.
   endif
-
+  
 
 9999 continue
   cput = MPI_WTIME()

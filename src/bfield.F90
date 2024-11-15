@@ -201,7 +201,9 @@ subroutine bfield( zeta, st, Bst )
      stop "bfield : abs(dBu(3)).lt.vsmall : field is not toroidal  ;"
     endif
 
-
+   !if( abs( dBu(3)).lt.vsmall ) then
+   !    write(ounit,'("WARNING: bfield: field is not toroidal")')
+   !endif
   endif
 
 !-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!

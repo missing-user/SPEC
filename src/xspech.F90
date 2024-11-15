@@ -336,7 +336,7 @@ subroutine spec
                         Lcoordinatesingularity, Lplasmaregion, Lvacuumregion, &
                         dtflux, dpflux, &
                         ImagneticOK, &
-                        ForceErr, &
+                        ForceErr, BnsErr,&
                         efmn, ofmn, cfmn, sfmn, &
                         iBns, iBnc, iVns, iVnc, &
                         Ate, Aze, Ato, Azo, & ! only required for debugging; 09 Mar 17;
@@ -362,7 +362,7 @@ subroutine spec
   LOGICAL              :: LComputeDerivatives, LContinueFreeboundaryIterations, exist, LupdateBn, LComputeAxis
   integer              :: imn, lmn, lNfp, lim, lin, ii, ideriv, stat
   integer              :: vvol, ifail, wflag, iflag, vflag
-  real(wp)                 :: rflag, lastcpu, bnserr, lRwc, lRws, lZwc, lZws, lItor, lGpol, lgBc, lgBs
+  real(wp)                 :: rflag, lastcpu, lRwc, lRws, lZwc, lZws, lItor, lGpol, lgBc, lgBs
   real(wp),    allocatable :: position(:), gradient(:)
   character            :: pack
   integer              :: Lfindzero_old, mfreeits_old
@@ -927,7 +927,7 @@ end subroutine spec
 subroutine final_diagnostics
   use mod_kinds, only: wp => dp
   use inputlist, only: nPtrj, nPpts, Igeometry, Lcheck, Nvol, odetol, &
-                       Isurf, Ivolume, mu, Wmacros, Ltransform
+                       Isurf, Ivolume, mu, Wmacros, Ltransform, Lsvdiota
   use fileunits, only: ounit
   use constants, only: zero
   use allglobal, only: pi2, myid, ncpu, MPI_COMM_SPEC, cpus, Mvol, Ntz, mn, &
@@ -1003,6 +1003,8 @@ subroutine final_diagnostics
 ! Evaluate rotational transform and straight field line coordinate transformation
 if( Ltransform ) then
 
+  FATAL(xspech, Lsvdiota.ne.1, Lsvdiota needs to be one for s.f.l transformation)
+
   do vvol=1,Mvol
     call brcast(vvol)
   enddo
@@ -1074,7 +1076,8 @@ endif
 
 
     do iocons = 0, 1
-	  if( ( Lcoordinatesingularity .and. iocons.eq.0 ) .or. ( Lvacuumregion .and. iocons.eq.1 ) ) cycle
+	  if( Lcoordinatesingularity .and. iocons.eq.0 ) cycle
+          if( vvol.eq.Nvol+1 .and. iocons.eq.1 ) cycle
       ! Compute covariant magnetic field at interface
       call lbpol(vvol, Bt00(1:Mvol, 0:1, -1:2), 0, iocons)
 
