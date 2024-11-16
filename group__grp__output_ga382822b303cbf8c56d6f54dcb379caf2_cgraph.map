@@ -1,5 +1,5 @@
 <map id="writereadgf" name="writereadgf">
-<area shape="rect" id="node1" title="read or write force&#45;derivative matrix" alt="" coords="5,903,92,929"/>
+<area shape="rect" id="node1" title="read or write force&#45;derivative matrix .ext.sp.DF" alt="" coords="5,903,92,929"/>
 <area shape="rect" id="node2" href="$group__grp__build__matrices.html#ga1c52bb6dbffdb432550aae12b096080f" title="Constructs energy and helicity matrices that represent the Beltrami linear system...." alt="" coords="1171,1235,1229,1261"/>
 <area shape="rect" id="node3" href="$group__grp__force__driver.html#gaec14f81fbdbedafbc4189489ec8ae178" title="Employs Newton method to find , where &#160;and &#160;is defined in dforce() ." alt="" coords="140,877,204,904"/>
 <area shape="rect" id="node4" href="$group__grp__global__force.html#ga38c9d3c50bd043707fefa5137c9dbf44" title="Calculates , where &#160;and , and ." alt="" coords="405,999,464,1025"/>
@@ -48,9 +48,9 @@
 <area shape="rect" id="node43" href="$dfp200_8f90.html#a5e56f1f4b1e6df11a9cffa6237c37469" title="This routine evaluates the value of the magnetic field once the interface is perturbed using matrix p..." alt="" coords="1658,2091,1811,2117"/>
 <area shape="rect" id="node45" href="$group__grp__coord__axis.html#ga564281be4d9806d0688a717314ad748f" title="The coordinate axis is assigned via a poloidal average over an arbitrary surface." alt="" coords="1173,832,1227,859"/>
 <area shape="rect" id="node47" href="$group__grp__free-boundary.html#gac0a2cc2241947b27241bb8ef75c5e0ed" title="Computes &#160;on the computational boundary, ." alt="" coords="1169,269,1231,296"/>
-<area shape="rect" id="node50" href="$group__grp__diagnostics.html#ga7401b50ec10c6598ee4a8112717a63ec" title="Computes eigenvalues and eigenvectors of derivative matrix, ." alt="" coords="733,556,793,583"/>
+<area shape="rect" id="node50" href="$group__grp__output.html#ga7401b50ec10c6598ee4a8112717a63ec" title="Computes eigenvalues and eigenvectors of derivative matrix, &#160;and saves them to .ext...." alt="" coords="733,556,793,583"/>
 <area shape="rect" id="node53" href="$group__grp__output.html#ga08d6a254dbc3d9d40ff1cf0bdfdf2148" title="Writes vector potential to .ext.sp.A ." alt="" coords="1169,348,1231,375"/>
-<area shape="rect" id="node55" href="$namespaceallglobal.html#a282c297c96abdab5e76b5ace440b09a8" title="The restart file is written." alt="" coords="920,856,1035,883"/>
+<area shape="rect" id="node55" href="$group__grp__output.html#ga282c297c96abdab5e76b5ace440b09a8" title="Write the restart file ext.sp.end." alt="" coords="920,856,1035,883"/>
 <area shape="rect" id="node56" href="$xspech_8f90.html#a9fdc71dffd7c61ee4588a3f80d3ab9ce" title="Main subroutine of SPEC." alt="" coords="732,431,795,457"/>
 <area shape="rect" id="node48" href="$group__grp__free-boundary.html#ga180576a10002ebf3840fce98d56316bb" title="Constructs the field created by the plasma currents, at an arbitrary, external location using virtual..." alt="" coords="1382,269,1442,296"/>
 <area shape="rect" id="node49" href="$group__grp__free-boundary.html#ga281c12a5de84fddd3db4383b0df8627f" title="Differential virtual casing integrand." alt="" coords="1537,269,1603,296"/>

@@ -15,7 +15,7 @@ var global_8f90 =
     ] ],
     [ "check_inputs", "global_8f90.html#a7824bc37519fe88336534ce90ab2af16", null ],
     [ "broadcast_inputs", "global_8f90.html#a50e99bda692e1d2e3fa68857b67db880", null ],
-    [ "wrtend", "global_8f90.html#a282c297c96abdab5e76b5ace440b09a8", null ],
+    [ "wrtend", "global_8f90.html#ga282c297c96abdab5e76b5ace440b09a8", null ],
     [ "ismyvolume", "global_8f90.html#aea1f5a74462533337cb950b8d7486b25", null ],
     [ "whichcpuid", "global_8f90.html#ad2dbd21d0579d623a92119c5ab553c7c", null ],
     [ "zero", "global_8f90.html#ab2b0340319f61089513f5dd1d3971a47", null ],

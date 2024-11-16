@@ -24,7 +24,7 @@
 <area shape="rect" id="node23" href="$namespaceallglobal.html#a7824bc37519fe88336534ce90ab2af16" title=" " alt="" coords="289,2359,441,2385"/>
 <area shape="rect" id="node59" href="$xspech_8f90.html#a48f45478dc2c9f70ea8aa1c60ad06503" title="This is the main &quot;driver&quot; for the physics part of SPEC." alt="" coords="675,2573,725,2600"/>
 <area shape="rect" id="node64" href="$group__grp__initialization.html#ga28628de0fdb3b3497668007d8d0643bd" title="Allocates and initializes internal arrays." alt="" coords="1165,2483,1224,2509"/>
-<area shape="rect" id="node71" href="$namespaceallglobal.html#a282c297c96abdab5e76b5ace440b09a8" title="The restart file is written." alt="" coords="1137,2408,1252,2435"/>
+<area shape="rect" id="node71" href="$group__grp__output.html#ga282c297c96abdab5e76b5ace440b09a8" title="Write the restart file ext.sp.end." alt="" coords="1137,2408,1252,2435"/>
 <area shape="rect" id="node74" href="$xspech_8f90.html#a537af4990058c0b0f2cd8b3669af204f" title="Closes output files, writes screen summary." alt="" coords="335,2191,395,2217"/>
 <area shape="rect" id="node75" href="$group__grp__output.html#gadb720ea6408b8f7681bfb7f86a4b86f2" title="Close all open HDF5 objects (we know of) and list any remaining still&#45;open objects." alt="" coords="296,2241,435,2268"/>
 <area shape="rect" id="node76" href="$group__grp__output.html#ga593e99355c8ceabe56a566e9d468dbd9" title="Write the final state of the equilibrium to the output file." alt="" coords="509,2864,608,2891"/>
@@ -69,7 +69,7 @@
 <area shape="rect" id="node56" href="$dfp200_8f90.html#a5e56f1f4b1e6df11a9cffa6237c37469" title="This routine evaluates the value of the magnetic field once the interface is perturbed using matrix p..." alt="" coords="1682,1243,1835,1269"/>
 <area shape="rect" id="node58" href="$group__grp__coord__axis.html#ga564281be4d9806d0688a717314ad748f" title="The coordinate axis is assigned via a poloidal average over an arbitrary surface." alt="" coords="1363,2165,1417,2192"/>
 <area shape="rect" id="node60" href="$group__grp__free-boundary.html#gac0a2cc2241947b27241bb8ef75c5e0ed" title="Computes &#160;on the computational boundary, ." alt="" coords="1359,2707,1421,2733"/>
-<area shape="rect" id="node63" href="$group__grp__diagnostics.html#ga7401b50ec10c6598ee4a8112717a63ec" title="Computes eigenvalues and eigenvectors of derivative matrix, ." alt="" coords="832,2484,892,2511"/>
+<area shape="rect" id="node63" href="$group__grp__output.html#ga7401b50ec10c6598ee4a8112717a63ec" title="Computes eigenvalues and eigenvectors of derivative matrix, &#160;and saves them to .ext...." alt="" coords="832,2484,892,2511"/>
 <area shape="rect" id="node66" href="$group__grp__output.html#ga08d6a254dbc3d9d40ff1cf0bdfdf2148" title="Writes vector potential to .ext.sp.A ." alt="" coords="1359,2781,1421,2808"/>
 <area shape="rect" id="node68" href="$group__grp__force__driver.html#gaec14f81fbdbedafbc4189489ec8ae178" title="Employs Newton method to find , where &#160;and &#160;is defined in dforce() ." alt="" coords="830,2308,894,2335"/>
 <area shape="rect" id="node61" href="$group__grp__free-boundary.html#ga180576a10002ebf3840fce98d56316bb" title="Constructs the field created by the plasma currents, at an arbitrary, external location using virtual..." alt="" coords="1533,2707,1593,2733"/>
@@ -78,6 +78,6 @@
 <area shape="rect" id="node67" href="$group__grp__output.html#ga2f9e9c50084175e5174b1e1070e24d73" title="Write the magnetic vector potential Fourier harmonics to the output file group /vector_potential ." alt="" coords="1493,2773,1632,2814"/>
 <area shape="rect" id="node69" href="$group__grp__force__driver.html#gabbc245b3884ee8d8d3e2a52f25149f78" title="Objective to be given to the Newton solver, using only function values." alt="" coords="1001,2383,1047,2409"/>
 <area shape="rect" id="node72" href="$group__grp__force__driver.html#ga8ccd6c7d901872702521d0a0edf95412" title="Objective to be given to the Newton solver, using function values and derivatives." alt="" coords="1001,2308,1047,2335"/>
-<area shape="rect" id="node73" href="$group__grp__force__driver.html#ga382822b303cbf8c56d6f54dcb379caf2" title="read or write force&#45;derivative matrix" alt="" coords="1151,2120,1238,2147"/>
+<area shape="rect" id="node73" href="$group__grp__output.html#ga382822b303cbf8c56d6f54dcb379caf2" title="read or write force&#45;derivative matrix .ext.sp.DF" alt="" coords="1151,2120,1238,2147"/>
 <area shape="rect" id="node70" href="$group__grp__output.html#gade76c03b9b11be2a12d3ddd32e77a6ae" title="Write convergence output (evolution of interface geometry, force, etc)." alt="" coords="1107,2318,1283,2359"/>
 </map>

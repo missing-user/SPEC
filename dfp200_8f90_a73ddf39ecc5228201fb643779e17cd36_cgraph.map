@@ -44,10 +44,10 @@
 <area shape="rect" id="node43" href="$xspech_8f90.html#a48f45478dc2c9f70ea8aa1c60ad06503" title="This is the main &quot;driver&quot; for the physics part of SPEC." alt="" coords="616,2584,667,2611"/>
 <area shape="rect" id="node42" href="$group__grp__coord__axis.html#ga564281be4d9806d0688a717314ad748f" title="The coordinate axis is assigned via a poloidal average over an arbitrary surface." alt="" coords="1441,1853,1495,1880"/>
 <area shape="rect" id="node44" href="$group__grp__free-boundary.html#gac0a2cc2241947b27241bb8ef75c5e0ed" title="Computes &#160;on the computational boundary, ." alt="" coords="1437,2053,1499,2080"/>
-<area shape="rect" id="node47" href="$group__grp__diagnostics.html#ga7401b50ec10c6598ee4a8112717a63ec" title="Computes eigenvalues and eigenvectors of derivative matrix, ." alt="" coords="782,1823,842,1849"/>
+<area shape="rect" id="node47" href="$group__grp__output.html#ga7401b50ec10c6598ee4a8112717a63ec" title="Computes eigenvalues and eigenvectors of derivative matrix, &#160;and saves them to .ext...." alt="" coords="782,1823,842,1849"/>
 <area shape="rect" id="node50" href="$group__grp__output.html#ga08d6a254dbc3d9d40ff1cf0bdfdf2148" title="Writes vector potential to .ext.sp.A ." alt="" coords="1437,2253,1499,2280"/>
 <area shape="rect" id="node52" href="$group__grp__force__driver.html#gaec14f81fbdbedafbc4189489ec8ae178" title="Employs Newton method to find , where &#160;and &#160;is defined in dforce() ." alt="" coords="780,2808,844,2835"/>
-<area shape="rect" id="node55" href="$namespaceallglobal.html#a282c297c96abdab5e76b5ace440b09a8" title="The restart file is written." alt="" coords="1196,2776,1311,2803"/>
+<area shape="rect" id="node55" href="$group__grp__output.html#ga282c297c96abdab5e76b5ace440b09a8" title="Write the restart file ext.sp.end." alt="" coords="1196,2776,1311,2803"/>
 <area shape="rect" id="node58" href="$xspech_8f90.html#a9fdc71dffd7c61ee4588a3f80d3ab9ce" title="Main subroutine of SPEC." alt="" coords="781,2149,843,2176"/>
 <area shape="rect" id="node45" href="$group__grp__free-boundary.html#ga180576a10002ebf3840fce98d56316bb" title="Constructs the field created by the plasma currents, at an arbitrary, external location using virtual..." alt="" coords="1634,1980,1694,2007"/>
 <area shape="rect" id="node46" href="$group__grp__free-boundary.html#ga281c12a5de84fddd3db4383b0df8627f" title="Differential virtual casing integrand." alt="" coords="1815,1980,1882,2007"/>
@@ -56,7 +56,7 @@
 <area shape="rect" id="node51" href="$group__grp__output.html#ga2f9e9c50084175e5174b1e1070e24d73" title="Write the magnetic vector potential Fourier harmonics to the output file group /vector_potential ." alt="" coords="1595,2238,1733,2279"/>
 <area shape="rect" id="node53" href="$group__grp__force__driver.html#gabbc245b3884ee8d8d3e2a52f25149f78" title="Objective to be given to the Newton solver, using only function values." alt="" coords="1011,2909,1058,2936"/>
 <area shape="rect" id="node56" href="$group__grp__force__driver.html#ga8ccd6c7d901872702521d0a0edf95412" title="Objective to be given to the Newton solver, using function values and derivatives." alt="" coords="1011,2835,1058,2861"/>
-<area shape="rect" id="node57" href="$group__grp__force__driver.html#ga382822b303cbf8c56d6f54dcb379caf2" title="read or write force&#45;derivative matrix" alt="" coords="1210,1715,1297,1741"/>
+<area shape="rect" id="node57" href="$group__grp__output.html#ga382822b303cbf8c56d6f54dcb379caf2" title="read or write force&#45;derivative matrix .ext.sp.DF" alt="" coords="1210,1715,1297,1741"/>
 <area shape="rect" id="node54" href="$group__grp__output.html#gade76c03b9b11be2a12d3ddd32e77a6ae" title="Write convergence output (evolution of interface geometry, force, etc)." alt="" coords="1165,2894,1341,2935"/>
 <area shape="rect" id="node59" href="$namespaceallglobal.html#a50e99bda692e1d2e3fa68857b67db880" title=" " alt="" coords="969,1945,1101,1986"/>
 <area shape="rect" id="node60" href="$namespaceallglobal.html#a7824bc37519fe88336534ce90ab2af16" title=" " alt="" coords="959,1741,1111,1768"/>
