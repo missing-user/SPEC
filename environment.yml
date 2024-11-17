@@ -11,6 +11,7 @@ dependencies:
   - gfortran
 
   # Libraries
+  - setuptools<60.0.0
   - hdf5
   - openblas
   - libopenblas
@@ -28,8 +29,9 @@ dependencies:
   - f90nml
   - f90wrap
 
-  # Install the spec wrapper and py_spec package in editable mode
   - pip
+  # Install the spec wrapper and py_spec package in editable mode
+  # as enabled by https://github.com/conda/conda/pull/3969
   - pip:
     - -e ./Utilities/pythontools
     - -e ./
@@ -39,4 +41,4 @@ variables:
   # Append py_spec to the python path, so completion is availble in your IDE
   PYTHONPATH: "'$PYTHONPATH:$PWD'/Utilities/pythontools"
   # Append the spec executable to the PATH, so it can be called from anywhere
-  PATH: "'${PATH}:$PWD'" 
+  PATH: "'${PATH}:$PWD'"
