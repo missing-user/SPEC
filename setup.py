@@ -39,7 +39,21 @@ d['cmake_args'].append("-DCMAKE_C_FLAGS=-I"+numpy.get_include())
 # Unset conflicting environment variables temporarily. They are restored on exit.
 conflicting_env_vars = ["HDF5", "HDF5_ROOT", "HDF5_HOME", "FFTW", "FFTW_DIR"]
 for env_var in conflicting_env_vars:
-   os.environ.pop(env_var, None)
+   if os.environ.pop(env_var, None):
+    print("Detected potentially conflicting envirnoment variable", env_var, "temporarily unset for the installation.")
+
+# Symlink f2py to f2py3, if needed (if there isn't a conda installed version)
+import subprocess
+f2py_path = subprocess.check_output(["which", "f2py3"], text=True)
+conda_env_path = os.environ["CONDA_PREFIX"]
+if not conda_env_path in f2py_path:
+   f2py_path = os.path.join(conda_env_path,"bin/f2py")
+   if not os.path.exists(f2py_path):
+      raise ImportError("Couldn't find f2py, which is required for the build. ") 
+   f2py3_path = os.path.join(conda_env_path,"bin/f2py3")
+   print("Couldn't find f2py3, attempting to symlink ", f2py_path, "to", f2py3_path)
+   os.symlink(f2py_path, f2py3_path)
+
 
 setup(
     name="spec",
