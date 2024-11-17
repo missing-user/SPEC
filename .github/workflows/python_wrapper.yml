@@ -49,5 +49,7 @@ jobs:
       run: conda env export
     - name: Test if installation is ok
       run: |
-        python -c "import py_spec; print('py_spec success')"
+        echo $CONDA_PREFIX 
+        pip freeze
         python -c "import spec; print('success')"
+        python -c "import py_spec; print('py_spec success')"

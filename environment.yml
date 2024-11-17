@@ -12,6 +12,7 @@ dependencies:
 
   # Libraries
   - setuptools<60.0.0
+  - numpy
   - hdf5
   - openblas
   - libopenblas
