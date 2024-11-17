@@ -4,30 +4,30 @@ jobs:
   python_wrapper-build:
     runs-on: ubuntu-latest
     name: python_wrapper build
-    
+
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    # Python3 should be pre-installed on 'ubuntu-latest'
-    - name: Python version info
-      run: |
-        python --version
-        pip --version
+      # Python3 should be pre-installed on 'ubuntu-latest'
+      - name: Python version info
+        run: |
+          python --version
+          pip --version
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install gfortran mpi-default-bin mpi-default-dev libhdf5-dev libfftw3-bin libfftw3-dev  libopenblas-dev cmake ninja-build
-        pip install  numpy f90nml scikit-build scipy meson meson-python
-        pip install f90wrap
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install gfortran mpi-default-bin mpi-default-dev libhdf5-dev libfftw3-bin libfftw3-dev  libopenblas-dev cmake ninja-build
+          pip install  numpy f90nml scikit-build scipy meson meson-python
+          pip install f90wrap
 
-    - name: Build python_wrapper
-      run: |
-        pip install .
-        
-    - name: Test if installation is ok
-      run: |
-        python -c "import spec; print('success')"
+      - name: Build python_wrapper
+        run: |
+          pip install .
+
+      - name: Test if installation is ok
+        run: |
+          python -c "import spec; print('success')"
 
   conda-build-ubuntu:
     runs-on: ubuntu-latest
@@ -35,46 +35,45 @@ jobs:
     defaults:
       run:
         shell: bash -l {0}
-        
-    steps:
-    - uses: actions/checkout@v4
-    - uses: conda-incubator/setup-miniconda@v3
-      # Or using the command conda env create --file environment.yml
-      with:
-        auto-update-conda: false
-        auto-activate-base: false
-        activate-environment: spec_wrapper
-        environment-file: environment.yml
-    # - name: Echo conda environment
-    #   run: conda env export
-    - name: Test if installation is ok
-      run: |
-        echo $CONDA_PREFIX 
-        conda env export
-        pip freeze
-        python3 -c "import numpy; print('numpy')"
-        python3 -c "import spec; print('success')"
-        python3 -c "import py_spec; print('py_spec success')"
 
-conda-test:
-  name: conda-test
-  runs-on: "ubuntu-latest"
-  defaults:
-    run:
-      shell: bash -l {0}
-  steps:
-    - uses: actions/checkout@v4
-    - uses: conda-incubator/setup-miniconda@v3
-      with:
-        miniconda-version: "latest"
-        auto-update-conda: true
-        activate-environment: foo
-    - name: "Call conda install"
-      run: |
-        conda install -y numpy
-        python --version
-        python -c "import numpy; print('numpy')"
-        
+    steps:
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        # Or using the command conda env create --file environment.yml
+        with:
+          auto-update-conda: false
+          auto-activate-base: false
+          activate-environment: spec_wrapper
+          environment-file: environment.yml
+      # - name: Echo conda environment
+      #   run: conda env export
+      - name: Test if installation is ok
+        run: |
+          echo $CONDA_PREFIX 
+          conda env export
+          pip freeze
+          python3 -c "import numpy; print('numpy')"
+          python3 -c "import spec; print('success')"
+          python3 -c "import py_spec; print('py_spec success')"
+
+  conda-test:
+    name: minimal conda example
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniconda-version: "latest"
+          auto-update-conda: true
+          activate-environment: foo
+      - name: "Call conda install"
+        run: |
+          conda install -y numpy
+          python --version
+          python -c "import numpy; print('numpy')"
 
   conda-build-macos:
     name: Ex2 Mac
