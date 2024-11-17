@@ -1,4 +1,3 @@
-name: spec_wrapper
 channels:
   - conda-forge
 dependencies:
@@ -6,9 +5,9 @@ dependencies:
   - python=3.11
 
   # Platform agnostic build dependencies
-  - gcc
-  - gxx
-  - gfortran
+  - c-compiler
+  - cxx-compiler
+  - fortran-compiler
 
   # Libraries
   - setuptools<60.0.0
@@ -40,6 +39,6 @@ dependencies:
 # Set environment variables
 variables:
   # Append py_spec to the python path, so completion is availble in your IDE
-  PYTHONPATH: "'$PYTHONPATH:$PWD'/Utilities/pythontools"
+  # PYTHONPATH: "'$PYTHONPATH:$PWD'/Utilities/pythontools"
   # Append the spec executable to the PATH, so it can be called from anywhere
-  PATH: "'${PATH}:$PWD'"
+  # PATH: "'${PATH}:$PWD'"

@@ -1,14 +1,8 @@
-
 channels:
   - conda-forge
 dependencies:
   # Common dependencies
   - python=3.11
-
-  # Platform agnostic build dependencies
-  - gcc
-  - gxx
-  - gfortran
 
   # Libraries
   - setuptools<60.0.0
@@ -32,6 +26,11 @@ dependencies:
   - pip
 
 
+  # Platform agnostic build dependencies
+  - c-compiler
+  - cxx-compiler
+  - fortran-compiler
+  
 # # Set environment variables
 # variables:
 #   # Append py_spec to the python path, so completion is availble in your IDE

@@ -42,6 +42,7 @@ jobs:
         # Or using the command conda env create --file environment.yml
         with:
           miniconda-version: "latest"
+          environment-name: spec_wrapper
           environment-file: spec_env.yml
           activate-environment: spec_wrapper
       # - name: Echo conda environment
