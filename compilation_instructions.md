@@ -11,7 +11,7 @@ dependency conflicts.
 Control over the installation can be had by editing `cmake_config.json`, to guide 
 CMake to the right compilers etc. 
 Configurations for different machines are stored in `${SPEC_ROOT}/cmake_machines`,
-to use these, link them to cmake_config.json: `ln -s cmake_config cmake_machines/<config_file.json>`
+to use these, link them to cmake_config.json: `ln -s cmake_machines/<config_file.json> cmake_config.json`
 
 >[!TIP]
 >install as much as possible in your environment using the `conda` command, 
