@@ -36,6 +36,11 @@ if 'CMAKE_ARGS' in os.environ:
 # see also: https://stackoverflow.com/a/14657667
 d['cmake_args'].append("-DCMAKE_C_FLAGS=-I"+numpy.get_include())
 
+# Unset conflicting environment variables temporarily. They are restored on exit.
+conflicting_env_vars = ["HDF5", "HDF5_ROOT", "HDF5_HOME", "FFTW", "FFTW_DIR"]
+for env_var in conflicting_env_vars:
+   os.environ.pop(env_var, None)
+
 setup(
     name="spec",
     version="0.0.3",
