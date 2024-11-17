@@ -49,4 +49,5 @@ jobs:
       run: conda env export
     - name: Test if installation is ok
       run: |
+        python -c "import py_spec; print('py_spec success')"
         python -c "import spec; print('success')"
