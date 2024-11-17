@@ -44,4 +44,5 @@ jobs:
 
     - name: Test if installation is ok
       run: |
+        conda activate spec_wrapper
         python -c "import spec; print('success')"
