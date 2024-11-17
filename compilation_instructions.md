@@ -36,26 +36,26 @@ pip install f90wrap
 
 
 Finally, install SPEC and the wrapper (logs will be in `compile.log`)
-```
+```bash
 pip install -v . 2>&1 | tee compile.log
 ```
 
 Install the `py_spec` python library
-```
-cd Utilities/pythontools/
-pip install -e .
+```bash
+pip install -e Utilities/pythontools
 ```
 
 ### Troubleshooting Anaconda install
 If using a newer version of python, `f2py3` is no longer shipped. If your system contains an old python install (for example from your OS), CMake can find its `f2py3` and give try to use it to compile the wrappers instead of your environments `f2py`. 
 Test this by looking if you have an `f2py3` in your path: `$which f2py3`. 
 The easiest workaround is to create a link called f2py3 that links to f2py so it is found first. 
-```
-ln -s ~/anaconda3/envs/spec_wrapper/bin/f2py ~/anaconda3/envs/spec_wrapper/bin/f2py3
+```bash
+conda activate spec_wrapper
+ln -s $CONDA_PREFIX/bin/f2py $CONDA_PREFIX/bin/f2py3
 ```
 
 You might have HDF5 or FFTW environment variables set (for example for a VMEC install). This can throw off CMake, which we want to use only anaconda. 
-```
+```bash
 unset HDF5, HDF5_ROOT, HDF5_HOME, FFTW, FFTW_DIR
 ```
 
