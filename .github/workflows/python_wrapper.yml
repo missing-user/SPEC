@@ -82,7 +82,6 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           miniconda-version: "latest"
-          python --version
           environment-file: minimalenv.yml
           activate-environment: test
       - name: Sh
