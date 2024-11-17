@@ -9,6 +9,18 @@ If you use SPEC in your research, please cite it appropriately using the "Cite t
 - Please direct questions/suggestions to [Stuart Hudson](mailto:shudson@pppl.gov?subject=spec).
 
 ## Installation
+
+The fastest way to install SPEC is using `conda` and the `environment.yml` file. 
+```bash
+conda env create --file environment.yml
+```
+This will create an environment called `spec_wrapper` with all the dependencies, build, and install the python wrapper `spec` and `py_spec` in the environment.
+
+```python
+import spec
+spec.version()
+```
+
 Instructions for compiling and testing SPEC are in [compilation_instructions.md](https://github.com/PrincetonUniversity/SPEC/blob/master/compilation_instructions.md).
 
 ## Documentation
