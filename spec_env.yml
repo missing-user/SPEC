@@ -32,8 +32,8 @@ dependencies:
   # as enabled by https://github.com/conda/conda/pull/3969
   - pip:
     - f90wrap
-    - "." 
-    - "./Utilities/pythontools" 
+    - -e "." 
+    - -e "./Utilities/pythontools" 
 
 # Set environment variables
 variables:
