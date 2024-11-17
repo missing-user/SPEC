@@ -28,3 +28,24 @@ jobs:
     - name: Test if installation is ok
       run: |
         python -c "import spec; print('success')"
+
+  python_wrapper-conda-build:
+    runs-on: ubuntu-latest
+    name: python_wrapper conda build
+    
+    steps:
+    - uses: actions/checkout@v4
+    - uses: conda-incubator/setup-miniconda@v3
+      with:
+        auto-update-conda: false
+        activate-environment: spec_wrapper
+        environment-file: environment.yml
+
+    - name: Install spec using conda
+      run: |
+        conda env create --file environment.yml
+        conda activate spec_wrapper
+
+    - name: Test if installation is ok
+      run: |
+        python -c "import spec; print('success')"

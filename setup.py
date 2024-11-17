@@ -3,6 +3,7 @@
 import os # environ
 import sys
 import json
+import warnings
 import argparse
 import setuptools
 
@@ -45,14 +46,17 @@ for env_var in conflicting_env_vars:
 # Symlink f2py to f2py3, if needed (if there isn't a conda installed version)
 import subprocess
 f2py_path = subprocess.getoutput("which f2py3")
-conda_env_path = os.environ["CONDA_PREFIX"]
-if not conda_env_path in f2py_path:
-   f2py_path = os.path.join(conda_env_path,"bin/f2py")
-   if not os.path.exists(f2py_path):
-      raise ImportError("Couldn't find f2py, which is required for the build. ") 
-   f2py3_path = os.path.join(conda_env_path,"bin/f2py3")
-   print("Couldn't find f2py3, attempting to symlink ", f2py_path, "to", f2py3_path)
-   os.symlink(f2py_path, f2py3_path)
+conda_env_path = os.environ.get("CONDA_PREFIX", None)
+if conda_env_path is None:
+    warnings.warn("No conda environment active. It is heavily recommended to install spec python tools using a conda environment.")
+else:
+    if not conda_env_path in f2py_path:
+        f2py_path = os.path.join(conda_env_path,"bin/f2py")
+        if not os.path.exists(f2py_path):
+            raise ImportError("Couldn't find f2py, which is required for the build. ") 
+        f2py3_path = os.path.join(conda_env_path,"bin/f2py3")
+        print("Couldn't find f2py3, attempting to symlink ", f2py_path, "to", f2py3_path)
+        os.symlink(f2py_path, f2py3_path)
 
 
 setup(
