@@ -1,13 +1,12 @@
 channels:
   - conda-forge
-dependencies:channels:
-  - conda-forge
+  - defaults
 dependencies:
   # Platform agnostic build dependencies
   - c-compiler
   - cxx-compiler
   - fortran-compiler
-
-  # Libraries
-  - setuptools<60.0.0 # for f90wrap
+  - cmake
+  - ninja
+  - setuptools<60.0.0
   - f90wrap
