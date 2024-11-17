@@ -33,8 +33,8 @@ dependencies:
   # Install the spec wrapper and py_spec package in editable mode
   # as enabled by https://github.com/conda/conda/pull/3969
   - pip:
-    - -e ./Utilities/pythontools
     - -e ./
+    - -e ./Utilities/pythontools
 
 # Set environment variables
 variables:

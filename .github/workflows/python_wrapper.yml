@@ -36,15 +36,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: conda-incubator/setup-miniconda@v3
+      # Or using the command conda env create --file environment.yml
       with:
         auto-update-conda: false
         activate-environment: spec_wrapper
         environment-file: environment.yml
-
-    - name: Install spec using conda
-      run: |
-        conda env create --file environment.yml
-        conda activate spec_wrapper
 
     - name: Test if installation is ok
       run: |
