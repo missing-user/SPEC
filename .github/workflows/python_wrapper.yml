@@ -41,10 +41,9 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         # Or using the command conda env create --file environment.yml
         with:
-          auto-update-conda: false
-          auto-activate-base: false
+          miniconda-version: "latest"
+          environment-file: spec_env.yml
           activate-environment: spec_wrapper
-          environment-file: environment.yml
       # - name: Echo conda environment
       #   run: conda env export
       - name: Test if installation is ok
@@ -52,9 +51,10 @@ jobs:
           echo $CONDA_PREFIX 
           conda env export
           pip freeze
-          python3 -c "import numpy; print('numpy')"
-          python3 -c "import spec; print('success')"
-          python3 -c "import py_spec; print('py_spec success')"
+          python --version
+          python -c "import numpy; print('numpy')"
+          python -c "import spec; print('success')"
+          python -c "import py_spec; print('py_spec success')"
 
   conda-test:
     name: minimal conda example
@@ -82,6 +82,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           miniconda-version: "latest"
+          python --version
           environment-file: minimalenv.yml
           activate-environment: test
       - name: Sh
