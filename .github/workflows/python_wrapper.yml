@@ -71,7 +71,7 @@ jobs:
         with:
           miniconda-version: "latest"
           environment-name: test_env
-          environment-file: minienv.yml
+          environment-file: minimalenv.yml
           python-version: "3.11"
           activate-environment: test_env
 
