@@ -59,4 +59,27 @@ jobs:
         run: |
           python -c "import spec; print('success')"
           python -c "import py_spec; print('py_spec success')"
-          python -c "import spec; input_namelist = py_spec.input.SPECNamelist('ci/G3V08L3Fi/G3V08L3Fi.001.sp'); equilibrium = input_namelist.run(); equilibrium.plot_poincare()"
+          python -c "import py_spec; input_namelist = py_spec.input.SPECNamelist('ci/G3V08L3Fi/G3V08L3Fi.001.sp'); equilibrium = input_namelist.run(force=True); equilibrium.plot_poincare()"
+
+
+  conda-install-f90wrap-mac:
+    runs-on: macos-latest
+    name: python_wrapper conda install f90wrap
+    steps:
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniconda-version: "latest"
+          environment-name: test_env
+          environment-file: minienv.yml
+          python-version: "3.11"
+          activate-environment: test_env
+
+      - name: conda environment
+        run: conda env export
+
+      - name: pip environment
+        run: pip freeze
+      - name: Test if installation is ok
+        run: |
+          python -c "import f90wrap; print('success')"
