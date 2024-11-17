@@ -32,17 +32,21 @@ jobs:
   python_wrapper-conda-build:
     runs-on: ubuntu-latest
     name: python_wrapper conda build
-    
+    defaults:
+      run:
+        shell: bash -l {0}
+        
     steps:
     - uses: actions/checkout@v4
     - uses: conda-incubator/setup-miniconda@v3
       # Or using the command conda env create --file environment.yml
       with:
         auto-update-conda: false
+        auto-activate-base: false
         activate-environment: spec_wrapper
         environment-file: environment.yml
-
+    - name: Echo conda environment
+      run: conda env export
     - name: Test if installation is ok
       run: |
-        conda activate spec_wrapper
         python -c "import spec; print('success')"
