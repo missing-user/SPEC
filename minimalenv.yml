@@ -1,11 +1,41 @@
-name: test
+
 channels:
   - conda-forge
 dependencies:
   # Common dependencies
   - python=3.11
 
+  # Platform agnostic build dependencies
+  - gcc
+  - gxx
+  - gfortran
+
+  # Libraries
+  - setuptools<60.0.0
+  - numpy
+  - hdf5
+  - openblas
+  - libopenblas
+  - fftw
+  - scalapack
+  - openmpi
+  - h5py
+  - matplotlib
   - scipy
+  - scikit-build
+  - mpi4py
+  - ipython
+  - cmake
+  - ninja
+  - f90nml
+  - f90wrap
+
   - pip
-  - pip:
-    - matplotlib
+
+
+# Set environment variables
+variables:
+  # Append py_spec to the python path, so completion is availble in your IDE
+  PYTHONPATH: "'$PYTHONPATH:$PWD'/Utilities/pythontools"
+  # Append the spec executable to the PATH, so it can be called from anywhere
+  PATH: "'${PATH}:$PWD'"
