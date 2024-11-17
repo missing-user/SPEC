@@ -45,13 +45,13 @@ jobs:
         auto-activate-base: false
         activate-environment: spec_wrapper
         environment-file: environment.yml
+    # - name: Echo conda environment
+    #   run: conda env export
+    - name: Test if installation is ok
       run: |
-        conda env export
         echo $CONDA_PREFIX 
+        conda env export
         pip freeze
+        python3 -c "import numpy; print('numpy')"
         python3 -c "import spec; print('success')"
         python3 -c "import py_spec; print('py_spec success')"
-    - name: Echo conda environment
-      run: conda env export
-    - name: Test if installation is ok
-      run: python3 -c "import spec; print('spec success')"
