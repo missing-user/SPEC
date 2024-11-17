@@ -9,7 +9,7 @@ dependencies:
   - fortran-compiler
 
   # Libraries
-  - setuptools
+  - setuptools<60.0.0 # for f90wrap
   - numpy
   - hdf5
   - openblas
@@ -32,8 +32,8 @@ dependencies:
   # as enabled by https://github.com/conda/conda/pull/3969
   - pip:
     - f90wrap
-    - -e "." 
-    - -e "./Utilities/pythontools" 
+    - "." 
+    - "./Utilities/pythontools" 
 
 # Set environment variables
 variables:
