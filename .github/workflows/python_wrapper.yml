@@ -29,7 +29,7 @@ jobs:
       run: |
         python -c "import spec; print('success')"
 
-  python_wrapper-conda-build:
+  conda-build-ubuntu:
     runs-on: ubuntu-latest
     name: python_wrapper conda build
     defaults:
@@ -55,3 +55,55 @@ jobs:
         python3 -c "import numpy; print('numpy')"
         python3 -c "import spec; print('success')"
         python3 -c "import py_spec; print('py_spec success')"
+
+conda-test:
+  name: conda-test
+  runs-on: "ubuntu-latest"
+  defaults:
+    run:
+      shell: bash -l {0}
+  steps:
+    - uses: actions/checkout@v4
+    - uses: conda-incubator/setup-miniconda@v3
+      with:
+        miniconda-version: "latest"
+        auto-update-conda: true
+        activate-environment: foo
+    - name: "Call conda install"
+      run: |
+        conda install -y numpy
+        python --version
+        python -c "import numpy; print('numpy')"
+        
+
+  conda-build-macos:
+    name: Ex2 Mac
+    runs-on: "macos-latest"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniconda-version: "latest"
+          activate-environment: foo
+      - name: Sh
+        shell: sh -l {0}
+        run: |
+          conda info
+          conda list
+          printenv | sort
+      - name: Bash
+        shell: bash -el {0}
+        run: |
+          conda info
+          conda list
+          printenv | sort
+          conda install -y numpy
+          python --version
+          python -c "import numpy; print('numpy')"
+      - name: Python
+        shell: python
+        run: |
+          import sys
+          print(sys.executable)
+          import numpy
+          print('numpy')
