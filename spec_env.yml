@@ -9,7 +9,7 @@ dependencies:
   - fortran-compiler
 
   # Libraries
-  - setuptools<60.0.0
+  - setuptools
   - numpy
   - hdf5
   - openblas

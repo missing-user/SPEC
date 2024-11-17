@@ -59,3 +59,4 @@ jobs:
         run: |
           python -c "import spec; print('success')"
           python -c "import py_spec; print('py_spec success')"
+          python -c "import spec; input_namelist = py_spec.input.SPECNamelist('ci/G3V08L3Fi/G3V08L3Fi.001.sp'); equilibrium = input_namelist.run(); equilibrium.plot_poincare()"
