@@ -44,7 +44,7 @@ for env_var in conflicting_env_vars:
 
 # Symlink f2py to f2py3, if needed (if there isn't a conda installed version)
 import subprocess
-f2py_path = subprocess.check_output(["which", "f2py3"], text=True)
+f2py_path = subprocess.getoutput("which f2py3")
 conda_env_path = os.environ["CONDA_PREFIX"]
 if not conda_env_path in f2py_path:
    f2py_path = os.path.join(conda_env_path,"bin/f2py")
