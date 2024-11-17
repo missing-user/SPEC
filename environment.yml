@@ -1,4 +1,4 @@
-name: spec_wrapper2
+name: spec_wrapper
 channels:
   - conda-forge
 dependencies:
