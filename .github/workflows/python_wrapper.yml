@@ -30,8 +30,11 @@ jobs:
           python -c "import spec; print('success')"
 
   conda-build-ubuntu:
-    runs-on: ubuntu-latest
+    runs-on: {{ matrix.os }}
     name: python_wrapper conda build
+    matrix:
+      python-version: ["3.9", "3.11", "3.12"]
+      os: ["ubuntu-latest", "macos-latest"]
     defaults:
       run:
         shell: bash -l {0}
@@ -44,58 +47,13 @@ jobs:
           miniconda-version: "latest"
           environment-name: spec_wrapper
           environment-file: spec_env.yml
+          python-version: ${{ matrix.python-version }}
           activate-environment: spec_wrapper
-      # - name: Echo conda environment
-      #   run: conda env export
+      - name: conda environment
+        run: conda env export
+      - name: pip environment
+        run: pip freeze
       - name: Test if installation is ok
         run: |
-          echo $CONDA_PREFIX 
-          conda env export
-          pip freeze
-          python --version
-          python -c "import numpy; print('numpy')"
           python -c "import spec; print('success')"
           python -c "import py_spec; print('py_spec success')"
-
-  conda-test:
-    name: minimal conda example
-    runs-on: "ubuntu-latest"
-    defaults:
-      run:
-        shell: bash -l {0}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: conda-incubator/setup-miniconda@v3
-        with:
-          miniconda-version: "latest"
-          environment-file: minimalenv.yml
-          activate-environment: test
-      - name: "Call conda install"
-        run: |
-          python --version
-          python -c "import numpy; print('numpy')"
-
-  conda-build-macos:
-    name: Ex2 Mac
-    runs-on: "macos-latest"
-    steps:
-      - uses: actions/checkout@v4
-      - uses: conda-incubator/setup-miniconda@v3
-        with:
-          miniconda-version: "latest"
-          environment-file: minimalenv.yml
-          activate-environment: test
-      - name: Sh
-        shell: sh -l {0}
-        run: |
-          conda info
-          conda list
-          printenv | sort
-      - name: Bash
-        shell: bash -el {0}
-        run: |
-          conda info
-          conda list
-          printenv | sort
-          python --version
-          python -c "import numpy; print('numpy')"

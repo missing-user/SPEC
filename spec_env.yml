@@ -2,7 +2,6 @@ channels:
   - conda-forge
 dependencies:
   # Common dependencies
-  - python=3.11
 
   # Platform agnostic build dependencies
   - c-compiler
@@ -27,18 +26,16 @@ dependencies:
   - cmake
   - ninja
   - f90nml
-  - f90wrap
 
   - pip
   # Install the spec wrapper and py_spec package in editable mode
   # as enabled by https://github.com/conda/conda/pull/3969
   - pip:
-    - "." 
-    - "./Utilities/pythontools" 
+    - f90wrap
+    - -e "." 
+    - -e "./Utilities/pythontools" 
 
 # Set environment variables
 variables:
   # Append py_spec to the python path, so completion is availble in your IDE
   PYTHONPATH: "'$PYTHONPATH:$PWD'/Utilities/pythontools"
-  # Append the spec executable to the PATH, so it can be called from anywhere
-  # PATH: "'${PATH}:$PWD'"
