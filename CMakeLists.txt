@@ -5,7 +5,6 @@ project(spec LANGUAGES C Fortran)
 set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "ON")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# Find OpenMP
 find_package(OpenMP)
 
 # Find Threads
@@ -26,6 +25,7 @@ endif()
 get_filename_component (compiler ${CMAKE_Fortran_COMPILER} NAME)
 message(STATUS "compiler is ${compiler}")
 if (${compiler} STREQUAL mpiifort OR ${compiler} STREQUAL mpifort)
+    message(STATUS "The default compiler is already mpi capable, no need to find MPI.")
 else ()
     find_package (MPI REQUIRED)
     if (MPI_Fortran_FOUND)
