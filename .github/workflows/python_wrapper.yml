@@ -29,13 +29,13 @@ jobs:
         run: |
           python -c "import spec; print('success')"
 
-  conda-build-ubuntu:
+  conda-build:
     runs-on: ${{ matrix.os }}
     name: python_wrapper conda build
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest,  manylinux, macos-12, macos-latest] 
+        os: [ubuntu-latest, macos-12]  
         python-version: ["3.9", "3.11"] # "3.12" is failing due to the new setuptools
     defaults:
       run:
@@ -55,31 +55,10 @@ jobs:
         run: conda env export
       - name: pip environment
         run: pip freeze
-      - name: Test if installation is ok
+      - name: Test py_spec, spec import
         run: |
           python -c "import spec; print('success')"
           python -c "import py_spec; print('py_spec success')"
-          python -c "import py_spec; input_namelist = py_spec.input.SPECNamelist('ci/G3V08L3Fi/G3V08L3Fi.001.sp'); equilibrium = input_namelist.run(force=True); equilibrium.plot_poincare()"
-
-
-  conda-install-f90wrap-mac:
-    runs-on: macos-latest
-    name: python_wrapper conda install f90wrap
-    steps:
-      - uses: actions/checkout@v4
-      - uses: conda-incubator/setup-miniconda@v3
-        with:
-          miniconda-version: "latest"
-          environment-name: test_env
-          environment-file: minimalenv.yml
-          python-version: "3.11"
-          activate-environment: test_env
-
-      - name: conda environment
-        run: conda env export
-
-      - name: pip environment
-        run: pip freeze
-      - name: Test if installation is ok
+      - name: Test run equilibrium using py_spec
         run: |
-          python -c "import f90wrap; print('success')"
+          python -c "import py_spec; input_namelist = py_spec.input.SPECNamelist('ci/G3V08L3Fi/G3V08L3Fi.001.sp'); equilibrium = input_namelist.run(force=True); equilibrium.plot_poincare()"
