@@ -27,16 +27,19 @@ dependencies:
   - cmake
   - ninja
   - f90nml
+  - f90wrap
 
   - pip
   # Install the spec wrapper and py_spec package in editable mode
   # as enabled by https://github.com/conda/conda/pull/3969
   - pip:
-    - f90wrap
-    - -e "." 
-    - -e "./Utilities/pythontools" 
+    - "." 
+    - "./Utilities/pythontools" 
 
 # Set environment variables
 variables:
   # Append py_spec to the python path, so completion is availble in your IDE
   PYTHONPATH: "'$PYTHONPATH:$PWD'/Utilities/pythontools"
+  # Without a SPEC_PATH variable it will attempt to install the xspec executable
+  # in /usr/local/bin, which will throw a permission error unless you are root.
+  SPEC_PATH: "'$PWD'"

@@ -35,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest,  manylinux, macos-12, macos-latest] 
         python-version: ["3.9", "3.11"] # "3.12" is failing due to the new setuptools
     defaults:
       run:
