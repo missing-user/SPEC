@@ -12,9 +12,9 @@ If you use SPEC in your research, please cite it appropriately using the "Cite t
 
 The fastest way to install SPEC is using `conda` and the `environment.yml` file. 
 ```bash
-conda env create --file environment.yml
+conda env create --file spec_env.yml -n spec_wrapper
 ```
-This will create an environment called `spec_wrapper` with, compile SPEC, and install the python wrapper `spec` and `py_spec` in the environment.
+This will create an environment called `spec_wrapper`, compile SPEC, and install the python wrapper `spec` and `py_spec` in the environment.
 
 If the automatic installation failed, take a look at the detailed instructions for compiling and testing SPEC in [compilation_instructions.md](https://github.com/PrincetonUniversity/SPEC/blob/master/compilation_instructions.md). 
 
@@ -22,9 +22,9 @@ If the automatic installation failed, take a look at the detailed instructions f
 After following the installation instructions, you are ready to compute your fist fixed boundary SPEC equilibrium! We will use the `spec` python wrapper here, but you can also use the standalone executable if you prefer.   
 ```python
 import matplotlib.pyplot as plt
-import spec
+import py_spec
 input_namelist = py_spec.input.SPECNamelist("ci/G3V08L3Fi/G3V08L3Fi.001.sp")
-equilibrium = input_namelist.run()
+equilibrium = input_namelist.run(force=True)
 equilibrium.plot_poincare()
 plt.show()
 ```
