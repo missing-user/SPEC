@@ -55,9 +55,7 @@ else:
         os.symlink(f2py_path, f2py3_path)
         print("Couldn't find f2py3, created a symlink ", f2py_path, "to", f2py3_path)
 
-import setuptools
-
-setuptools.setup(
+setup(
     name="spec",
     packages=['spec'],
     package_dir={'': 'Utilities/python_wrapper'},
