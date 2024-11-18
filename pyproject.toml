@@ -1,5 +1,10 @@
 [build-system]
-requires = ["setuptools", "scikit-build", "f90wrap"]
+requires = ["setuptools >= 61.0", 
+    "numpy", 
+    "f90wrap", 
+    "scikit-build>=0.13",
+    "cmake>=3.18",
+    "ninja"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,6 +12,7 @@ name = "spec"
 version = "0.0.4"
 description = "The Stepped-Pressure Equilibrium Code, an advanced MRxMHD equilibrium solver."
 readme = "README.md"
+licanse = "GPL-3.0"
 classifiers = [
     "Development Status :: 1 - Alpha",
     "Intended Audience :: Nuclear Fusion Community",
@@ -14,9 +20,4 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Topic :: MHD Equilibrium Solver"
-]
-dependencies = [
-    "numpy",
-    "f90wrap",
-
 ]
