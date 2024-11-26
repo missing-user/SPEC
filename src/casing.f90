@@ -251,16 +251,18 @@ end subroutine casing
 
 !-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
 
-!> @brief Differential virtual casing integrand
-!> \ingroup grp_free-boundary
-!>
-!> Differential virtual casing integrand
-!>
-!> @param[in] Ndim number of parameters (==2)
-!> @param[in] tz \f$\theta\f$ and \f$\zeta\f$
-!> @param[in] Nfun number of function values (==3)
-!> @param[out] vcintegrand cartesian components of magnetic field
-subroutine dvcfield( Ndim, tz, Nfun, vcintegrand ) ! differential virtual-casing field; format is fixed by NAG requirements;
+subroutine computejj(Ndim,tz,Nfun,jj)
+
+  implicit none
+  integer, intent(in) :: Ndim, Nfun
+  real, intent(in) :: tz(1:Ndim)
+  real, intent(out) :: jj(1:Nfun)
+
+  real :: teta, zeta
+
+  teta = tz(1)
+  zeta = tz(2)
+
 
 !-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
 
@@ -354,11 +356,6 @@ subroutine dvcfield( Ndim, tz, Nfun, vcintegrand ) ! differential virtual-casing
      dR(1) = dR(1) +      (   (   iRbc(ii,Mvol) - iRbc(ii,Nvol) ) * carg + ( iRbs(ii,Mvol) - iRbs(ii,Nvol) ) * sarg ) * half
      dR(2) = dR(2) + mi * ( -                     iRbc(ii,Nvol)   * sarg +                   iRbs(ii,Nvol)   * carg )
      dR(3) = dR(3) - ni * ( -                     iRbc(ii,Nvol)   * sarg +                   iRbs(ii,Nvol)   * carg )
-
-    !dZ(0) = dZ(0) +                              iZbc(ii,Nvol)   * carg +                   iZbs(ii,Nvol)   * sarg
-    !dZ(1) = dZ(1) +      (   (   iZbc(ii,Mvol) - iZbc(ii,Nvol) ) * carg + ( iZbs(ii,Mvol) - iZbs(ii,Nvol) ) * sarg ) * half
-    !dZ(2) = dZ(2) + mi * ( -                     iZbc(ii,Nvol)   * sarg +                   iZbs(ii,Nvol)   * carg )
-    !dZ(3) = dZ(3) - ni * ( -                     iZbc(ii,Nvol)   * sarg +                   iZbs(ii,Nvol)   * carg )
 
      do ll = 0, Lrad(Mvol)
       gBut = gBut - ( Aze(Mvol,ideriv,ii)%s(ll) * carg + Azo(Mvol,ideriv,ii)%s(ll) * sarg ) * TT(ll,0,1) ! contravariant; Jacobian comes later;
@@ -469,6 +466,80 @@ subroutine dvcfield( Ndim, tz, Nfun, vcintegrand ) ! differential virtual-casing
   Blt = ( gBut * gtt + gBuz * gtz ) / sqrtg
   Blz = ( gBut * gtz + gBuz * gzz ) / sqrtg
 
+
+!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
+
+  select case( Igeometry )
+
+  case( 1 ) ! Igeometry = 1 ; 09 Mar 17;
+
+   XX =          teta ; XXt =           one ; XXz =          zero
+   YY =          zeta ; YYt =          zero ; YYz =           one
+   ZZ = dR(0)         ; ZZt = dR(2)         ; ZZz = dR(3)
+
+  case( 2 ) ! Igeometry = 2 ; 09 Mar 17;
+
+   FATAL( casing, .true., virtual casing under construction for cylindrical geometry )
+
+  case( 3 ) ! Igeometry = 3 ; toroidal geometry;
+
+   czeta = cos( zeta ) ; szeta = sin( zeta )
+
+   XX = dR(0) * czeta ; XXt = dR(2) * czeta ; XXz = dR(3) * czeta - dR(0) * szeta ! 10 Apr 13;
+   YY = dR(0) * szeta ; YYt = dR(2) * szeta ; YYz = dR(3) * szeta + dR(0) * czeta
+   ZZ = dZ(0)         ; ZZt = dZ(2)         ; ZZz = dZ(3)
+
+  end select
+
+!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
+
+  jj(1:3) = (/ Blz * XXt - Blt * XXz, &
+               Blz * YYt - Blt * YYz, &
+               Blz * ZZt - Blt * ZZz /)
+
+  jj(1) = -one
+  jj(2) = -one
+  jj(3) = -one
+
+end subroutine computejj
+
+!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
+
+!> @brief Differential virtual casing integrand
+!> \ingroup grp_free-boundary
+!>
+!> Differential virtual casing integrand
+!>
+!> @param[in] Ndim number of parameters (==2)
+!> @param[in] tz \f$\theta\f$ and \f$\zeta\f$
+!> @param[in] Nfun number of function values (==3)
+!> @param[out] vcintegrand cartesian components of magnetic field
+subroutine dvcfield( Ndim, tz, Nfun, vcintegrand ) ! differential virtual-casing field; format is fixed by NAG requirements;
+
+!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
+
+  use constants, only : zero, half, one, three, four
+
+  use numerical, only : small
+
+  use fileunits, only : ounit, vunit
+
+  use inputlist, only : Wcasing, Nvol, Igeometry, Lrad, vcasingeps
+
+!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
+
+  LOCALS
+
+  INTEGER , intent(in)  :: Ndim, Nfun
+  REAL    , intent(in)  :: tz(1:Ndim)
+  REAL    , intent(out) :: vcintegrand(1:Nfun) ! integrand; components of magnetic field due to plasma currents in Cartesian coordinates;
+
+  INTEGER               :: ii, mi, ni, ll, ideriv, jk
+  REAL                  :: dR(0:3), dZ(0:3), gBut, gBuz, gtt, gtz, gzz, sqrtg, Blt, Blz, czeta, szeta, arg, carg, sarg, XX, YY, ZZ, teta, zeta
+  REAL                  :: jj(1:3), rr(1:3), distance(1:3), firstorderfactor
+
+  REAL                  :: XXt, XXz, YYt, YYz, ZZt, ZZz, ds, Bxyz(1:3)
+
 !-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
 
   select case( Igeometry )
@@ -499,10 +570,6 @@ subroutine dvcfield( Ndim, tz, Nfun, vcintegrand ) ! differential virtual-casing
                Dxyz(2,jk) - YY, &
                Dxyz(3,jk) - ZZ /)
 
-  jj(1:3) = (/ Blz * XXt - Blt * XXz, &
-               Blz * YYt - Blt * YYz, &
-               Blz * ZZt - Blt * ZZz /)
-
 !-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
 
   distance(2) = sum( rr(1:3) * rr(1:3) ) + vcasingeps**2 ! 04 May 17;
@@ -512,29 +579,14 @@ subroutine dvcfield( Ndim, tz, Nfun, vcintegrand ) ! differential virtual-casing
   firstorderfactor = ( one + three * vcasingeps**2 / distance(2) ) / distance(3) ! 04 May 17;
 
 !-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
+  jj = computejj(Ndim,tz,Nfun)
 
   Bxyz(1:3) = (/ jj(2) * rr(3) - jj(3) * rr(2), &
                  jj(3) * rr(1) - jj(1) * rr(3), &
                  jj(1) * rr(2) - jj(2) * rr(1)  /)
 
   vcintegrand(1) = sum( Bxyz(1:3) * Nxyz(1:3,jk) ) * firstorderfactor
-
-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
-
-!   vcintegrand( 4) = - three * vcintegrand(1) * rr(1) / distance(2)         ! dBxdx; ! need to divide by distance(3) ; 14 Apr 17;
-!   vcintegrand( 5) = - three * vcintegrand(1) * rr(2) / distance(2) - jj(3) ! dBxdy;
-!   vcintegrand( 6) = - three * vcintegrand(1) * rr(3) / distance(2) + jj(2) ! dBxdz;
-!
-!   vcintegrand( 7) = - three * vcintegrand(2) * rr(1) / distance(2) + jj(3) ! dBydx;
-!   vcintegrand( 8) = - three * vcintegrand(2) * rr(2) / distance(2)         ! dBydy;
-!   vcintegrand( 9) = - three * vcintegrand(2) * rr(3) / distance(2) - jj(1) ! dBydz;
-!
-!   vcintegrand(10) = - three * vcintegrand(3) * rr(1) / distance(2) - jj(2) ! dBzdx;
-!   vcintegrand(11) = - three * vcintegrand(3) * rr(2) / distance(2) + jj(1) ! dBzdy;
-!   vcintegrand(12) = - three * vcintegrand(3) * rr(3) / distance(2)         ! dBzdz;
-
-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
-
+  
   return
 
 !-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
