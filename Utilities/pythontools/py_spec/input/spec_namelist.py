@@ -434,14 +434,14 @@ class SPECNamelist(Namelist):
             value -- the value that one wants to set
             m,n -- the m and n number of the guess, must be within the allowed Mpol and Ntor range
                    the n number is the one without multiplying by Nfp
-            mykey -- which guess, can be 'Bnc' or 'Bns'
+            mykey -- which guess, can be 'Bnc', 'Bns', 'Vns' or 'Vnc' 
         """
         if m > self._Mpol or m < 0:
             raise ValueError("0 <= m <= Mpol")
         if n > self._Ntor or n < -self._Ntor:
             raise ValueError("-Ntor <= n <= Ntor")
-        if mykey not in ['Bns', 'Bnc']:
-            raise ValueError("mykey must be in ['Bns', 'Bnc']")
+        if mykey not in ['Bns', 'Bnc', 'Vns', 'Vnc']: 
+            raise ValueError("mykey must be in ['Bns', 'Bnc', 'Vns', 'Vnc']")
 
         self['physicslist'][mykey][m][n+self._Ntor] = value
         
