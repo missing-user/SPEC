@@ -625,6 +625,11 @@ subroutine spec
                               + sum( abs( iBnc(1:mn) - efmn(1:mn) ) ) / (mn  )
    endif
 
+   !  Set bnserr = 1e3*gBntol to force at least one iteration.
+   if( nfreeboundaryiterations.eq.0 ) then
+     print *, "Forcing at least one free-boundary iteration."
+     bnserr = 1e3*gBntol
+   endif
 
    if( bnserr.gt.gBntol ) then
 

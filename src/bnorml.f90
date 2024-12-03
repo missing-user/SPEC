@@ -124,6 +124,7 @@ subroutine bnorml( mn, Ntz, efmn, ofmn )
 !-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
 
   ijreal(1:Ntz) = zero ! normal plasma field; 15 Oct 12;
+  ijimag(1:Ntz) = zero ! normal plasma field; 15 Oct 12;
 
 !-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
 
@@ -176,7 +177,7 @@ if ( Lvcgrid.eq.1 ) then
     accuracyestimate = deltah2h / sum(abs(ijimag))
   enddo
 
-  write(ounit, '("bnorml : ", 10x ," : accuracyestimate = ",es13.5," ; vcasingtol = ",es13.5)') accuracyestimate, vcasingtol
+  write(ounit, '("bnorml : ", 10x ," : accuracyestimate = ",es13.5," ; vcasingtol = ",es13.5," ; order of integration = ",es13.5)') accuracyestimate, vcasingtol, (log(deltah4h2/deltah2h)/log(2.0))
   ! if (accuracyestimate.gt.vcasingtol) then
   !   FATAL( bnorml, .true., virtual casing accuracy is too low, increase vcNt and vcNz )
   ! endif
