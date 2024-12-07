@@ -260,7 +260,7 @@ If <code>LHevectors==T</code> then the eigenvalues <em>and</em> the eigenvectors
 Note that if <code>Igeometry==3</code>, then the derivative-matrix also contains information regarding how the "artificial" spectral constraints vary with geometry; so, the eigenvalues and eigenvectors are not purely "physical".  </li>
 <li>
 <p class="startli">The eigenvalues and eigenvectors (if required) are written to the file <code></code>.ext.GF.ev as follows:</p>
-<div class="fragment"><div class="line"><span class="keyword">open</span>(hunit,file=<span class="stringliteral">&quot;.&quot;</span>//trim(ext)//<span class="stringliteral">&quot;.GF.ev&quot;</span>,status=<span class="stringliteral">&quot;unknown&quot;</span>,form=<span class="stringliteral">&quot;unformatted&quot;</span>)</div>
+<div class="fragment"><div class="line"><span class="keyword">open</span>(hunit,file=trim(get_hidden(ext))//<span class="stringliteral">&quot;.GF.ev&quot;</span>,status=<span class="stringliteral">&quot;unknown&quot;</span>,form=<span class="stringliteral">&quot;unformatted&quot;</span>)</div>
 <div class="line"><span class="keyword">write</span>(hunit)ngdof,ldvr,ldvi        <span class="comment">! integers; if only the eigenvalues were computed then Ldvr=Ldvi=1;</span></div>
 <div class="line"><span class="keyword">write</span>(hunit)evalr(1:ngdof)         <span class="comment">! reals   ; real      part of eigenvalues;</span></div>
 <div class="line"><span class="keyword">write</span>(hunit)evali(1:ngdof)         <span class="comment">! reals   ; imaginary part of eigenvalues;</span></div>
@@ -378,7 +378,7 @@ The components of the vector potential, \({\bf A}=A_\theta \nabla + A_\zeta \nab
 <p ><b>file format</b></p>
 <ul>
 <li>
-The format of the files containing the vector potential is as follows: <div class="fragment"><div class="line"><span class="keyword">open</span>(aunit, file=<span class="stringliteral">&quot;.&quot;</span>//trim(ext)//<span class="stringliteral">&quot;.sp.A&quot;</span>, status=<span class="stringliteral">&quot;replace&quot;</span>, form=<span class="stringliteral">&quot;unformatted&quot;</span> )</div>
+The format of the files containing the vector potential is as follows: <div class="fragment"><div class="line"><span class="keyword">open</span>(aunit, file=trim(get_hidden(ext))//<span class="stringliteral">&quot;.sp.A&quot;</span>, status=<span class="stringliteral">&quot;replace&quot;</span>, form=<span class="stringliteral">&quot;unformatted&quot;</span> )</div>
 <div class="line"><span class="keyword">write</span>(aunit) mvol, mpol, ntor, mn, nfp <span class="comment">! integers;</span></div>
 <div class="line"><span class="keyword">write</span>(aunit) im(1:mn) <span class="comment">! integers; poloidal modes;</span></div>
 <div class="line"><span class="keyword">write</span>(aunit) in(1:mn) <span class="comment">! integers; toroidal modes;</span></div>
