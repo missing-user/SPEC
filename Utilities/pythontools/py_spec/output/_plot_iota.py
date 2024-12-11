@@ -28,8 +28,9 @@ def plot_iota(self, xaxis="R", yaxis="i", ax=None, **kwargs):
         ydata = self.transform.fiota[1, :]
         xlabel = r"s"
     elif xaxis == "R":
-        xdata = self.poincare.R[:, 0, 0]
-        ydata = self.transform.fiota[1, self.poincare.success == 1]
+        mask =  (self.poincare.success == 1) & (self.transform.fiota[0, :] != -2)
+        xdata = self.poincare.R[mask, 0, 0]
+        ydata = self.transform.fiota[1, mask]
         xlabel = r"R"
     else:
         raise ValueError("xaxis should be one of ['R', 's'].")
@@ -45,10 +46,7 @@ def plot_iota(self, xaxis="R", yaxis="i", ax=None, **kwargs):
 
     dots = ax.scatter(xdata, ydata, **kwargs)
 
-    plt.xlabel(xlabel, fontsize=20)
-    plt.ylabel(ylabel, fontsize=20)
-
-    plt.xticks(fontsize=16)
-    plt.yticks(fontsize=16)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
 
     return

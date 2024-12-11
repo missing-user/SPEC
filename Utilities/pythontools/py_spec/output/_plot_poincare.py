@@ -64,18 +64,16 @@ def plot_poincare(self, toroidalIdx=0, prange="full", ax=None, **kwargs):
         raise ValueError("prange should be one of ['full'(default), 'upper', 'lower'].")
     # adjust figure properties
     if self.input.physics.Igeometry == 3:
-        plt.xlabel("R [m]", fontsize=20)
-        plt.ylabel("Z [m]", fontsize=20)
+        plt.xlabel("R [m]")
+        plt.ylabel("Z [m]")
         plt.axis("equal")
     if self.input.physics.Igeometry == 2:
-        plt.xlabel("X [m]", fontsize=20)
-        plt.ylabel("Y [m]", fontsize=20)
+        plt.xlabel("X [m]")
+        plt.ylabel("Y [m]")
         plt.axis("equal")
     if self.input.physics.Igeometry == 1:
-        plt.ylabel("R [m]", fontsize=20)
-        plt.xlabel(r"$\theta$", fontsize=20)
+        plt.ylabel("R [m]")
+        plt.xlabel(r"$\theta$")
         plt.xlim([0, 2*np.pi])
-    plt.xticks(fontsize=16)
-    plt.yticks(fontsize=16)
 
     return ax

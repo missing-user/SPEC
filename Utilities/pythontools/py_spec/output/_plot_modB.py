@@ -69,16 +69,16 @@ def plot_modB(
 
     plot = ax.pcolormesh(plotR[:, :], plotZ[:, :], plotB[:, :], **kwargs)
     if Igeometry == 1:
-        ax.set_xlabel(r"$\theta$")
-        ax.set_ylabel(r"$R$")
+        ax.set_xlabel(r"$\theta$ [$^\circ$]")
+        ax.set_ylabel("R [m]")
     if Igeometry == 2:
         ax.set_aspect("equal")
-        ax.set_xlabel(r"$X$")
-        ax.set_ylabel(r"$Y$")
+        ax.set_xlabel("X [m]")
+        ax.set_ylabel("Y [m]")
     if Igeometry == 3:
         ax.set_aspect("equal")
-        ax.set_xlabel(r"$R$")
-        ax.set_ylabel(r"$Z$")
+        ax.set_xlabel("R [m]")
+        ax.set_ylabel("Z [m]")
 
     if colorbar:
         cbar = plt.colorbar(plot, ax=ax)
