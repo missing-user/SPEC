@@ -1,7 +1,7 @@
 <map id="intghs" name="intghs">
 <area shape="rect" id="node1" title="Calculates volume integrals of Chebyshev polynomials and covariant field products." alt="" coords="1533,220,1591,247"/>
 <area shape="rect" id="node2" href="$dfp200_8f90.html#a5e56f1f4b1e6df11a9cffa6237c37469" title="This routine evaluates the value of the magnetic field once the interface is perturbed using matrix p..." alt="" coords="967,119,1121,145"/>
-<area shape="rect" id="node21" href="$intghs_8f90.html#ae10091a51178071d12004da4952104d4" title="free workspace" alt="" coords="956,169,1132,196"/>
+<area shape="rect" id="node21" href="$intghs_8f90.html#ae10091a51178071d12004da4952104d4" title="free workspace." alt="" coords="956,169,1132,196"/>
 <area shape="rect" id="node23" href="$intghs_8f90.html#ae8299d4625cabd90eb1398fd2cd38089" title="init workspace" alt="" coords="969,220,1119,247"/>
 <area shape="rect" id="node24" href="$mp00ac_8f90.html#ae9fe335bb4916face9f9d19ce8c0f5d7" title="compute a.x by either by coumputing it directly, or using a matrix free method" alt="" coords="1420,321,1485,348"/>
 <area shape="rect" id="node26" href="$group__grp__solver.html#ga6626839aff500f060beb5bce2b90c447" title="Solves Beltrami/vacuum (linear) system, given matrices.unpacking fluxes, helicity multiplier" alt="" coords="1180,295,1248,321"/>

@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['jdmas_0',['jdmas',['../group__grp__field__matrices.html#gaea74e5acbbee457416231312a513eb8e',1,'allglobal']]],
-  ['jiimag_1',['jiimag',['../group__grp__fourier__transform.html#gaad4cc6a24c2bc6f31023fe55f8d44bd3',1,'allglobal']]],
-  ['jireal_2',['jireal',['../group__grp__fourier__transform.html#ga5d6c2633274202e97562b9d81c836e40',1,'allglobal']]],
-  ['jkimag_3',['jkimag',['../group__grp__fourier__transform.html#ga8e91c812e84b5574a7c0bc9efa34439f',1,'allglobal']]],
-  ['jkreal_4',['jkreal',['../group__grp__fourier__transform.html#gad51cca0b71deee436bcb0196989607d4',1,'allglobal']]],
-  ['jo00aa_5',['jo00aa',['../group__grp__diagnostics.html#ga6411205c36a7d50002d7f3fb3133c441',1,'jo00aa.f90']]],
-  ['jo00aa_2ef90_6',['jo00aa.f90',['../jo00aa_8f90.html',1,'']]],
-  ['jxyz_7',['jxyz',['../group__grp__misc.html#ga449e86184c9de95f1ce27316b93a665f',1,'allglobal']]]
+  ['ki_0',['ki',['../group__grp__fourier__transform.html#gaca692045a8e4de49459ea32246e06ff4',1,'allglobal']]],
+  ['kija_1',['kija',['../group__grp__fourier__transform.html#ga7d15b4dee6864901e31b33c3a7d2bf08',1,'allglobal']]],
+  ['kijs_2',['kijs',['../group__grp__fourier__transform.html#gad384ef4769c0a61035309a7dd74165ab',1,'allglobal']]],
+  ['kjimag_3',['kjimag',['../group__grp__fourier__transform.html#gae0c51403be34815d567553fc0d718c77',1,'allglobal']]],
+  ['kjreal_4',['kjreal',['../group__grp__fourier__transform.html#ga98bc88d28c8aa37e245f888fa9e58c46',1,'allglobal']]]
 ];

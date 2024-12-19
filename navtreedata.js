@@ -25,10 +25,23 @@
 var NAVTREE =
 [
   [ "SPEC", "index.html", [
-    [ "<img src=\"SPEC_97x55.png\" alt=\"SPEC logo\"/> The Stepped Pressure Equilibrium Code", "index.html", [
-      [ "Installation", "index.html#autotoc_md1", null ],
-      [ "Documentation", "index.html#autotoc_md2", null ]
+    [ "The Stepped Pressure Equilibrium Code", "index.html#autotoc_md8", [
+      [ "Citation", "index.html#autotoc_md9", null ],
+      [ "Installation", "index.html#autotoc_md10", null ],
+      [ "Documentation", "index.html#autotoc_md11", null ]
     ] ],
+    [ "SPEC compilation instructions", "md_compilation_instructions.html", [
+      [ "Installation using Anaconda", "md_compilation_instructions.html#autotoc_md1", [
+        [ "Troubleshooting Anaconda install", "md_compilation_instructions.html#autotoc_md2", null ],
+        [ "Testing your SPEC installation", "md_compilation_instructions.html#autotoc_md3", null ]
+      ] ],
+      [ "Other legacy installations", "md_compilation_instructions.html#autotoc_md4", [
+        [ "CMake installation", "md_compilation_instructions.html#autotoc_md5", null ],
+        [ "Make installation", "md_compilation_instructions.html#autotoc_md6", null ]
+      ] ],
+      [ "Build process", "md_compilation_instructions.html#autotoc_md7", null ]
+    ] ],
+    [ "Citelist", "md_docs_Citelist.html", null ],
     [ "Todo List", "todo.html", null ],
     [ "Bibliography", "citelist.html", null ],
     [ "Modules", "modules.html", "modules" ],
@@ -57,9 +70,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__grp__fourier__transform.html#ga2c0453587e99e4aed559d2a36e5ed2af",
-"group__grp__output.html",
-"sphdf5_8f90.html#ac044da6c791e1cd46b1ff9ce13eaad13"
+"group__grp__fourier__transform.html#ga16a474ec37a253d5b4477d6b7f4da9ff",
+"group__grp__misc.html#ga948dcbb5cd2eda2c5f4588b61fa3346c",
+"sphdf5_8f90.html#a7d3acffac1aa1c086a71dac56b026ebc"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
